@@ -15,6 +15,11 @@ helpers.isDownLoadInSelection = (download, tags) => {
   return isIn;
 };
 
+helpers.updateSelections = (selections, dls) => {
+  const selectionsNew = selections.map(sel => sel.tags);
+  return helpers.generateSelectionsFromDownloads(selectionsNew, dls);
+}
+
 helpers.generateSelectionsFromDownloads = (selections, dls) => {
   const selectionsNew = [];
   selections.forEach((selection, i) => {

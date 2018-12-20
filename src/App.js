@@ -24,18 +24,26 @@ class App extends Component {
     this.setState({ downloads });
   }
 
-  removeTag(dlId, tagId) {
-    const { downloads } = this.state;
-    const { tags } = downloads[dlId];
-    downloads[dlId].tags = tags.splice(tagId, 1).concat();
-    this.setState({ downloads });
+  removeTag(parent, tagId) {
+    const id = parent.split('.')[1];
+    let { downloads, selections } = this.state;
+    const { tags } = (parent.includes('dl')) ? downloads[id] : selections[id];
+    tags.splice(tagId, 1);
+    if (parent.includes('dl')) {
+      downloads[id].tags = tags.concat();
+    } else {
+      selections[id].tags = tags.concat();
+    }
+
+    const selectionNew = helpers.updateSelections(selections, downloads);
+    this.setState({ downloads, selections: selectionNew });
   }
 
   render() {
     const { downloads, selections } = this.state;
     let selection = '';
     if (selections !== null) {
-      selection = (<Selections downloads={downloads} selections={selections} />);
+      selection = (<Selections removeTag={this.removeTag} selections={selections} />);
     }
     return (
       <div className="App">
