@@ -4,4 +4,9 @@ import './index.css';
 import App from './App';
 import inputData from './data/input_data.js';
 
-ReactDOM.render(<App downloads={inputData.downloads} />, document.getElementById('root'));
+const { downloads, selections } = inputData;
+
+ReactDOM.render(
+  <App downloads={downloads} selections={selections} />,
+  document.getElementById('root')
+);

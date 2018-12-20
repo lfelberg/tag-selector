@@ -1,0 +1,5 @@
+.tagged-entry p, .tagged-entry div {
+  display: inline;
+  padding-right: 10px;
+  text-align: left;
+}
