@@ -7,7 +7,7 @@ const TaggedListEntry = ({ download, id, removeTag, addTag }) => {
   const speed = size / time;
   const stats = `${size} MB in ${time} seconds. (${speed.toFixed(2)} mb/s)`;
   const tagButtons = tags.map((tag, i) =>
-    (<TagButton tag={tag} key={i} id={i} removeTag={removeTag} dlId={id} />)
+    (<TagButton tag={tag} key={i} id={i} removeTag={removeTag} parentId={`dl.${id}`} />)
   );
 
   return (

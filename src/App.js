@@ -7,7 +7,9 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    const { downloads, selections } = props;
+    let { downloads, selections } = props;
+    downloads = helpers.generateDownloadIds(downloads);
+    selections = helpers.generateSelectionsFromDownloads(selections, downloads);
     this.state = { downloads, selections };
 
     this.removeTag = this.removeTag.bind(this);
