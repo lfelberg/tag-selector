@@ -10,18 +10,28 @@ class App extends Component {
     let { downloads, selections } = props;
     downloads = helpers.generateDownloadIds(downloads);
     selections = helpers.generateSelectionsFromDownloads(selections, downloads);
-    this.state = { downloads, selections };
+    this.state = {
+      downloads,
+      selections,
+      editType: '',
+      editId: -1,
+    };
 
     this.removeTag = this.removeTag.bind(this);
     this.addTag = this.addTag.bind(this);
+    this.add = this.add.bind(this);
   }
 
-  addTag(id, keyValuePair) {
-    const { downloads } = this.state;
-    const { tags } = downloads[id];
+  add(editType, editId) {
+    this.setState({ editType, editId });
+  }
+
+  addTag(type, id, keyValuePair) {
+    console.log(keyValuePair);
+    const { downloads, selections } = this.state;
+    const { tags } = (type === 'dl') ? downloads[id] : selections[id];
     tags.push(keyValuePair);
-    downloads[id].tags = tags.concat();
-    this.setState({ downloads });
+    this.updateAndSetState(type, id, tags);
   }
 
   removeTag(parent, tagId) {
@@ -29,6 +39,12 @@ class App extends Component {
     let { downloads, selections } = this.state;
     const { tags } = (parent.includes('dl')) ? downloads[id] : selections[id];
     tags.splice(tagId, 1);
+    this.updateAndSetState(parent, id, tags);
+  }
+
+  updateAndSetState(parent, id, tags) {
+    let { downloads, selections } = this.state;
+
     if (parent.includes('dl')) {
       downloads[id].tags = tags.concat();
     } else {
@@ -36,14 +52,27 @@ class App extends Component {
     }
 
     const selectionNew = helpers.updateSelections(selections, downloads);
-    this.setState({ downloads, selections: selectionNew });
+    this.setState({
+      downloads,
+      selections: selectionNew,
+      editType: '',
+      editId: -1,
+    });
   }
 
   render() {
-    const { downloads, selections } = this.state;
+    const { downloads, selections, editType, editId } = this.state;
     let selection = '';
     if (selections !== null) {
-      selection = (<Selections removeTag={this.removeTag} selections={selections} />);
+      selection = (
+        <Selections
+          selections={selections}
+          add={this.add}
+          addTag={this.addTag}
+          removeTag={this.removeTag}
+          editId={(editType === 'sess') ? editId : -1}
+        />
+      );
     }
     return (
       <div className="App">
@@ -51,6 +80,8 @@ class App extends Component {
           downloads={downloads}
           removeTag={this.removeTag}
           addTag={this.addTag}
+          add={this.add}
+          editId={(editType === 'dl') ? editId : -1}
         />
         {selection}
       </div>

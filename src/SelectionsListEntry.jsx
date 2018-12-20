@@ -1,8 +1,14 @@
 import React from 'react';
 import SelectionsEntryStats from './SelectionsEntryStats.jsx';
 import TagButton from './TagButton.jsx';
+import TagForm from './TagForm.jsx';
 
-const SelectionsListEntry = ({ selection, id, removeTag }) => {
+const SelectionsListEntry = ({ selection, id, editId, removeTag, addTag, add }) => {
+  if (selection.tags.length === 0) {
+    return ('');
+  }
+
+  const editor = (id === editId) ? (<TagForm id={id} type="sel" />) : '';
   const header = (
     <div className="selection-header">
       {selection.tags.map((tag, i) =>
@@ -20,6 +26,7 @@ const SelectionsListEntry = ({ selection, id, removeTag }) => {
   return (
     <div className="selection-entry">
       {header}
+      {editor}
       <SelectionsEntryStats selection={selection} />
     </div>
   );

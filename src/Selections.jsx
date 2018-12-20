@@ -1,9 +1,19 @@
 import React from 'react';
 import SelectionsListEntry from './SelectionsListEntry.jsx';
 
-const Selections = ({ selections, removeTag }) => {
+const Selections = ({ selections, addTag, removeTag, add, editId }) => {
   const selectionDownloads = selections.map((selection, i) =>
-    (<SelectionsListEntry selection={selection} key={i} id={i} removeTag={removeTag} />)
+    (
+      <SelectionsListEntry
+        selection={selection}
+        key={i}
+        id={i}
+        editId={editId}
+        removeTag={removeTag}
+        addTag={addTag}
+        add={add}
+      />
+    )
   );
   return (
     <div id="elections">
