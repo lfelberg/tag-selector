@@ -1,5 +1,5 @@
 import React from 'react';
-import './TagButton.css';
+import './styles/TagButton.css';
 
 const TagButton = ({ tag, parentId, id, removeTag }) => {
   const { name, value } = tag;

@@ -1,7 +1,7 @@
 import React from 'react';
 import TagButton from './TagButton.jsx';
 import TagForm from './TagForm.jsx';
-import './TaggedListEntry.css';
+import './styles/TaggedListEntry.css';
 
 const TaggedListEntry = ({ download, id, editId, hoverId, removeTag, addTag, add }) => {
   const { size, time, tags, selections } = download;

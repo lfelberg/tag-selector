@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Selections from './Selections.jsx';
 import Tagged from './Tagged.jsx';
 import helpers from './lib/helpers.js';
-import './App.css';
+import './styles/App.css';
 
 class App extends Component {
   constructor(props) {
