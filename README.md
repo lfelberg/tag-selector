@@ -1,4 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tag selector Headspin coding challenge
+
+The front end module satisfies the following requirements:
+
+- [X] Be able to delete a tag from a session.
+- [X] Be able to add a tag to a session.
+- [X] When a tag is added to a session, UI immediately updates the
+statistics for any selections that include the session based on the
+new tag.
+- [X] When a tag is deleted from a session, UI immediately updates the
+statistics for any selections that included the session based on that
+tag.
+- [] When the mouse hovers a selection, its corresponding sessions get
+visually highlighted in some way.
+- [X] Be able to delete a selection.
+- [] Be able to create a new selection. When the new selection is created,
+it immediately updates with statistics, if there are any objects that
+pass its filter.
+
+Extras:
+
+1. Selections as defined above take the form of a logical disjunction (a=x or b=y).
+   Extend selections to be disjunctions of conjunctions:
+   (a=x and b=y) or (a=z and c=p and d=m) or ...
+
+   1a. Duplicate tag names allowed in conjunctions
+       (a=x and a=y) or (a=m and a=n)
+
+       This involves allowing tagging a session with multiple tags
+       that share a name.
+
+2. Read-only tags. Some download sessions might be tagged with Read-only, or
+   "system tags" that cannot be deleted or modified, but can still be
+   selected for like a regular tag.
 
 ## Available Scripts
 
@@ -9,14 +42,6 @@ In the project directory, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
@@ -26,19 +51,3 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

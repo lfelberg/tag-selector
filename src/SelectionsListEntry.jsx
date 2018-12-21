@@ -3,7 +3,15 @@ import SelectionsEntryStats from './SelectionsEntryStats.jsx';
 import TagButton from './TagButton.jsx';
 import TagForm from './TagForm.jsx';
 
-const SelectionsListEntry = ({ selection, id, editId, removeTag, addTag, add }) => {
+const SelectionsListEntry = ({
+  selection,
+  id,
+  editId,
+  removeTag,
+  addTag,
+  add,
+  changeHoverId,
+}) => {
   if (selection.tags.length === 0) {
     return ('');
   }
@@ -24,7 +32,11 @@ const SelectionsListEntry = ({ selection, id, editId, removeTag, addTag, add }) 
   );
 
   return (
-    <div className="selection-entry">
+    <div
+      className="selection-entry"
+      onMouseEnter={() => changeHoverId(id)}
+      onMouseLeave={() => changeHoverId(-1)}
+    >
       {header}
       {editor}
       <SelectionsEntryStats selection={selection} />

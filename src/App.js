@@ -9,17 +9,18 @@ class App extends Component {
     super(props);
     let { downloads, selections } = props;
     downloads = helpers.generateDownloadIds(downloads);
-    selections = helpers.generateSelectionsFromDownloads(selections, downloads);
+    const selsDls = helpers.generateSelectionsFromDownloads(selections, downloads);
     this.state = {
-      downloads,
-      selections,
+      ...selsDls,
       editType: '',
       editId: -1,
+      hoverId: -1,
     };
 
     this.removeTag = this.removeTag.bind(this);
     this.addTag = this.addTag.bind(this);
     this.add = this.add.bind(this);
+    this.changeHoverId = this.changeHoverId.bind(this);
   }
 
   add(editType, editId) {
@@ -42,6 +43,10 @@ class App extends Component {
     this.updateAndSetState(parent, id, tags);
   }
 
+  changeHoverId(hoverId) {
+    this.setState({ hoverId: `s${hoverId}` });
+  }
+
   updateAndSetState(parent, id, tags) {
     let { downloads, selections } = this.state;
 
@@ -51,17 +56,16 @@ class App extends Component {
       selections[id].tags = tags.concat();
     }
 
-    const selectionNew = helpers.updateSelections(selections, downloads);
+    const selsDls = helpers.updateSelections(selections, downloads);
     this.setState({
-      downloads,
-      selections: selectionNew,
+      ...selsDls,
       editType: '',
       editId: -1,
     });
   }
 
   render() {
-    const { downloads, selections, editType, editId } = this.state;
+    const { downloads, selections, editType, editId, hoverId } = this.state;
     let selection = '';
     if (selections !== null) {
       selection = (
@@ -70,6 +74,7 @@ class App extends Component {
           add={this.add}
           addTag={this.addTag}
           removeTag={this.removeTag}
+          changeHoverId={this.changeHoverId}
           editId={(editType === 'sess') ? editId : -1}
         />
       );
@@ -81,6 +86,7 @@ class App extends Component {
           removeTag={this.removeTag}
           addTag={this.addTag}
           add={this.add}
+          hoverId={hoverId}
           editId={(editType === 'dl') ? editId : -1}
         />
         {selection}

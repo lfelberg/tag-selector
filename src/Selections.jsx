@@ -1,7 +1,7 @@
 import React from 'react';
 import SelectionsListEntry from './SelectionsListEntry.jsx';
 
-const Selections = ({ selections, addTag, removeTag, add, editId }) => {
+const Selections = ({ selections, addTag, removeTag, add, editId, changeHoverId }) => {
   const selectionDownloads = selections.map((selection, i) =>
     (
       <SelectionsListEntry
@@ -10,6 +10,7 @@ const Selections = ({ selections, addTag, removeTag, add, editId }) => {
         id={i}
         editId={editId}
         removeTag={removeTag}
+        changeHoverId={changeHoverId}
         addTag={addTag}
         add={add}
       />

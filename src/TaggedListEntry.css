@@ -1,9 +1,14 @@
+.tags {
+  background: grey;
+  padding: 3px;
+}
 .tagged-entry p, .tagged-entry div {
   display: inline;
-  margin: 10px;
+  margin-top: 5px;
   text-align: left;
 }
 
-.tagged-entry div {
-  background: grey;
+.selected {
+  border-left: yellow 8px solid;
+  padding-left: 4px;
 }

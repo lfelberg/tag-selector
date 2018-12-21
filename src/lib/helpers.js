@@ -20,20 +20,23 @@ helpers.updateSelections = (selections, dls) => {
   return helpers.generateSelectionsFromDownloads(selectionsNew, dls);
 }
 
-helpers.generateSelectionsFromDownloads = (selections, dls) => {
-  const selectionsNew = [];
-  selections.forEach((selection, i) => {
+helpers.generateSelectionsFromDownloads = (selectionsOld, dls) => {
+  const selections = [];
+  dls.forEach(dl => { dl.selections = {}; });
+
+  selectionsOld.forEach((selection, i) => {
     const tags = [];
     const downloads = [];
     selection.forEach(kVPair => tags.push(Object.assign({}, kVPair)));
     dls.forEach(dl => {
       if (helpers.isDownLoadInSelection(dl, tags)) {
         downloads.push(dl);
+        dl.selections[`s${i}`] = i;
       }
     });
-    selectionsNew.push({ tags, downloads })
+    selections.push({ tags, downloads })
   });
-  return selectionsNew;
+  return ({ selections, downloads: dls });
 };
 
 helpers.generateDownloadIds = (downloads) => {
