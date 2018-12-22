@@ -1,12 +1,13 @@
 import React from 'react';
 import TaggedListEntry from './TaggedListEntry.jsx';
 
-const Tagged = ({ downloads, hoverId, editId, removeTag, addTag, add }) => {
+const Tagged = ({ downloads, hoverId, editId, removeTag, addTag, hideAdd, add }) => {
   const taggedDownloads = downloads.map((dl, i) =>
     (<TaggedListEntry
       download={dl}
       removeTag={removeTag}
       addTag={addTag}
+      hideAdd={hideAdd}
       add={add}
       editId={editId}
       hoverId={hoverId}

@@ -3,7 +3,7 @@ import TagButton from './TagButton.jsx';
 import TagForm from './TagForm.jsx';
 import './styles/TaggedListEntry.css';
 
-const TaggedListEntry = ({ download, id, editId, hoverId, removeTag, addTag, add }) => {
+const TaggedListEntry = ({ download, id, editId, hoverId, removeTag, addTag, hideAdd, add }) => {
   const { size, time, tags, selections } = download;
   const speed = size / time;
   const stats = `${size} MB in ${time} seconds. (${speed.toFixed(2)} mb/s)`;
@@ -11,7 +11,7 @@ const TaggedListEntry = ({ download, id, editId, hoverId, removeTag, addTag, add
     (<TagButton tag={tag} key={i} id={i} removeTag={removeTag} parentId={`dl.${id}`} />)
   );
 
-  const editor = (id === editId) ? (<TagForm id={id} type="dl" addTag={addTag} />) : '';
+  const editor = (id === editId) ? (<TagForm id={id} type="dl" addTag={addTag} hideAdd={hideAdd} />) : '';
   const color = (hoverId in selections) ? (<div className="selected" />) : '';
 
   return (

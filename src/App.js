@@ -15,20 +15,29 @@ class App extends Component {
       editType: '',
       editId: -1,
       hoverId: -1,
+      addSelection: false,
     };
 
+    this.hideAdd = this.hideAdd.bind(this);
     this.removeTag = this.removeTag.bind(this);
     this.addTag = this.addTag.bind(this);
     this.add = this.add.bind(this);
     this.changeHoverId = this.changeHoverId.bind(this);
   }
 
+  hideAdd() {
+    this.setState({ editType: '', editId: -1, hoverId: -1, addSelection: false })
+  }
+
   add(editType, editId) {
-    this.setState({ editType, editId });
+    if (editType === 'sel') {
+      this.setState({ addSelection: true });
+    } else {
+      this.setState({ editType, editId });
+    }
   }
 
   addTag(type, id, keyValuePair) {
-    console.log(keyValuePair);
     const { downloads, selections } = this.state;
     const { tags } = (type === 'dl') ? downloads[id] : selections[id];
     tags.push(keyValuePair);
@@ -65,12 +74,22 @@ class App extends Component {
   }
 
   render() {
-    const { downloads, selections, editType, editId, hoverId } = this.state;
+    const {
+      downloads,
+      selections,
+      editType,
+      editId,
+      hoverId,
+      addSelection,
+    } = this.state;
+
     let selection = '';
     if (selections !== null) {
       selection = (
         <Selections
           selections={selections}
+          addSelection={addSelection}
+          hideAdd={this.hideAdd}
           add={this.add}
           addTag={this.addTag}
           removeTag={this.removeTag}
@@ -83,6 +102,7 @@ class App extends Component {
       <div className="App">
         <Tagged
           downloads={downloads}
+          hideAdd={this.hideAdd}
           removeTag={this.removeTag}
           addTag={this.addTag}
           add={this.add}

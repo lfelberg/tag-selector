@@ -13,7 +13,6 @@ class TagForm extends React.Component {
 
   update(e) {
     const { name, value } = e.target;
-    console.log(name, value)
     const { form } = this.state;
     form[name] = value;
     this.setState({ form });
@@ -22,12 +21,13 @@ class TagForm extends React.Component {
   render() {
     const { form } = this.state;
     const { name, value } = form;
-    const { addTag, id, type } = this.props;
+    const { addTag, hideAdd, id, type } = this.props;
     return (
       <form id="editing-tag">
         <input type="text" name="name" value={name} onChange={e => this.update(e)} />
         <input type="text" name="value" value={value} onChange={e => this.update(e)} />
-        <button type="button" onClick={() => addTag(type, id, { name, value })}>Add</button>
+        <button type="button" onClick={() => addTag(type, id, { name, value })}>Add Tag</button>
+        <button type="button" onClick={() => hideAdd()}>Cancel</button>
       </form>
     );
   }

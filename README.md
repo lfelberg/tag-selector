@@ -10,7 +10,7 @@ new tag.
 - [X] When a tag is deleted from a session, UI immediately updates the
 statistics for any selections that included the session based on that
 tag.
-- [] When the mouse hovers a selection, its corresponding sessions get
+- [X] When the mouse hovers a selection, its corresponding sessions get
 visually highlighted in some way.
 - [X] Be able to delete a selection.
 - [] Be able to create a new selection. When the new selection is created,

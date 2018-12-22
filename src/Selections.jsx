@@ -1,7 +1,17 @@
 import React from 'react';
+import SelectionsAdder from './SelectionsAdder.jsx';
 import SelectionsListEntry from './SelectionsListEntry.jsx';
 
-const Selections = ({ selections, addTag, removeTag, add, editId, changeHoverId }) => {
+const Selections = ({
+  selections,
+  hideAdd,
+  addTag,
+  removeTag,
+  add,
+  editId,
+  changeHoverId,
+  addSelection,
+}) => {
   const selectionDownloads = selections.map((selection, i) =>
     (
       <SelectionsListEntry
@@ -16,9 +26,15 @@ const Selections = ({ selections, addTag, removeTag, add, editId, changeHoverId 
       />
     )
   );
+  const adder = (addSelection) ?
+    (<SelectionsAdder id={selections.length} addTag={addTag} hideAdd={hideAdd} />)
+    : '';
+
   return (
-    <div id="elections">
+    <div id="selections">
       <h1>Selections</h1>
+      <button className="add-selection" onClick={() => add('sel')}>+</button>
+      {adder}
       {selectionDownloads}
     </div>
   );

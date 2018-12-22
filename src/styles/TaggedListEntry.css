@@ -2,6 +2,11 @@
   background: grey;
   padding: 3px;
 }
+
+.tagged-entry {
+  padding-bottom: 8px;
+}
+
 .tagged-entry p, .tagged-entry div {
   display: inline;
   margin-top: 5px;
