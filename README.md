@@ -13,7 +13,7 @@ tag.
 - [X] When the mouse hovers a selection, its corresponding sessions get
 visually highlighted in some way.
 - [X] Be able to delete a selection.
-- [] Be able to create a new selection. When the new selection is created,
+- [X] Be able to create a new selection. When the new selection is created,
 it immediately updates with statistics, if there are any objects that
 pass its filter.
 
