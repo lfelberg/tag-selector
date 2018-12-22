@@ -39,8 +39,15 @@ class App extends Component {
 
   addTag(type, id, keyValuePair) {
     const { downloads, selections } = this.state;
-    const { tags } = (type === 'dl') ? downloads[id] : selections[id];
-    tags.push(keyValuePair);
+    let tags = [];
+    if (type === 'dl') {
+      tags =  downloads[id].tags;
+      tags.push(keyValuePair);
+    } else {
+      selections.push({});
+      tags = keyValuePair;
+    }
+
     this.updateAndSetState(type, id, tags);
   }
 
@@ -70,6 +77,7 @@ class App extends Component {
       ...selsDls,
       editType: '',
       editId: -1,
+      addSelection: false,
     });
   }
 

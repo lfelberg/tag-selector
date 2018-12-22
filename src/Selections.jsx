@@ -15,6 +15,7 @@ const Selections = ({
   const selectionDownloads = selections.map((selection, i) =>
     (
       <SelectionsListEntry
+        style={{ border: 'red 1px solid' }}
         selection={selection}
         key={i}
         id={i}
