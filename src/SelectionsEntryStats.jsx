@@ -6,7 +6,7 @@ const SelectionsEntryStats = ({ selection }) => {
   const averageSize = helpers.computeAverage(selection.downloads, 'size');
   const averageTime = helpers.computeAverage(selection.downloads, 'time');
   const averageRate = averageSize / averageTime;
-  let averages = 'Empty selection';
+  let averages = (<p>Empty selection</p>);
 
   if (size > 0) {
     averages = (

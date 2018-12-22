@@ -18,7 +18,7 @@ const SelectionsListEntry = ({
 
   const editor = (id === editId) ? (<TagForm id={id} type="sel" />) : '';
   const header = (
-    <div className="selection-header">
+    <div className="selection-header" style={{ border: 'red 1px solid' }} >
       {selection.tags.map((tag, i) =>
         (<TagButton
           tag={tag}
